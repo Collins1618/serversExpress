@@ -52,6 +52,20 @@ app.post("/cats", (req,res) => {
     res.send("POST REQUEST TO /CATS!! THIS IS DIFFERENT FROM A GET REQUEST")
 })
 
+//using query strings
+app.get("/search", (req,res) => {
+    const { q } = req.query;
+    
+
+    if(!q){
+        res.send("Nothing found if nothing searched!");
+    }
+    res.send(`<h1>Search results for: ${q}</h1>`)
+    // console.log(req.query);
+    // res.send("Hi!");
+})
+
+
 //a route to match with every other path that usere might input
 //this essentially means everything. It is important for this to come
 //at the end after other requests otherwise, the other requests will be
@@ -59,6 +73,8 @@ app.post("/cats", (req,res) => {
 app.get("*", (req,res) => {
     res.send("I DON'T KNOW THAT PATH");
 })
+
+
 
 //start a server to listen for requests
 app.listen(3000, () => {
