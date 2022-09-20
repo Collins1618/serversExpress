@@ -17,6 +17,26 @@ app.get("/", (req,res) => {
     res.send("This is the home page!")
 })
 
+//Express path parameters, using patterns in our routes
+//this matches the actual string subreddit and any other thing that follows this pattern
+app.get("/r/:subreddit", (req,res) => {
+    // console.log(req.params)
+
+    //destructure the params object in the request objct
+    const { subreddit } = req.params;
+
+    res.send(`<h1>Browsing the ${subreddit} subreddit</h1>`);
+})
+
+app.get("/r/:subreddit/:postId", (req,res) => {
+    // console.log(req.params)
+
+    //destructure the params object in the request objct
+    const { subreddit, postId} = req.params;
+
+    res.send(`<h1>Viewing Post ID: ${postId} on the ${subreddit} subreddit</h1>`);
+})
+
 app.get("/cats", (req,res) => {
     // console.log("CAT REQUEST!!!")
     res.send("Meow!!")
